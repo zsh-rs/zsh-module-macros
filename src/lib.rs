@@ -1,5 +1,5 @@
 use proc_macro::TokenStream;
-use syn::{ItemFn, ItemStruct, parse_macro_input};
+use syn::{DeriveInput, ItemFn, ItemStruct, parse_macro_input};
 
 // helpers
 mod utils;
@@ -7,6 +7,9 @@ mod utils;
 // features
 mod builtin;
 mod state;
+
+// derives
+mod derive;
 
 /// Declares a module-state struct.
 ///
@@ -102,4 +105,17 @@ pub fn builtin(args: TokenStream, item: TokenStream) -> TokenStream {
     let input = parse_macro_input!(item as ItemFn);
     let args = parse_macro_input!(args as builtin::BuiltinArgs);
     builtin::builtin_impl(args, input).into()
+}
+
+
+#[proc_macro_derive(Activate)]
+pub fn activate_derive(input: TokenStream) -> TokenStream {
+    let input = parse_macro_input!(input as DeriveInput);
+    derive::activate_derive_impl(input).into()
+}
+
+#[proc_macro_derive(Deactivate)]
+pub fn deactivate_derive(input: TokenStream) -> TokenStream {
+    let input = parse_macro_input!(input as DeriveInput);
+    derive::deactivate_derive_impl(input).into()
 }
