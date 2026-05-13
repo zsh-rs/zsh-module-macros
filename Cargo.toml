@@ -4,10 +4,10 @@ version = "0.1.0"
 authors = ["Cole McAnelly <cole.mcanelly3@gmail.com>"]
 license = "MIT OR Apache-2.0"
 readme = "README.md"
-repository = "TODO"
+repository = "https://github.com/zsh-rs/zsh-module-macros"
 edition = "2024"
 description = """
-TODO
+Macro portion of the zsh-module crate, a high-level framework for creating dynamically-loadable ZSH modules in Rust. This crate provides the procedural macros used by zsh-module, and is not intended to be used directly by end-users.
 """
 
 [lib]
